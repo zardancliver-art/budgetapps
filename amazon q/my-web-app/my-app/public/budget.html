@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="budget.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Budget Tracker</h1>
+        
+        <div class="section">
+            <h2 class="collapsible" onclick="toggleSection('people')">
+                People <span id="people-arrow">▼</span>
+            </h2>
+            <div id="people-preview" class="people-preview"></div>
+            <div id="people-content" class="collapsible-content">
+                <div id="people-list"></div>
+                <div class="add-person">
+                    <input type="text" id="new-person-name" placeholder="Person name" onkeypress="if(event.key==='Enter') addPerson()">
+                    <button class="add-btn" onclick="addPerson()">+ Add Person</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Income</h2>
+            <div id="income-list"></div>
+            <button class="add-btn" onclick="addItem('income')">+ Add Income</button>
+            <div id="income-summary" class="income-summary"></div>
+        </div>
+        
+        <div class="section">
+            <h2>Costs</h2>
+            <div id="costs-list"></div>
+            <button class="add-btn" onclick="addItem('costs')">+ Add Cost</button>
+        </div>
+        
+        <div class="summary">
+            <div class="total-income">Total Income: <span id="total-income">0</span> SEK</div>
+            <div class="total-costs">Total Costs: <span id="total-costs">0</span> SEK</div>
+            <div class="net-result">Net Result: <span id="net-result">0</span> SEK</div>
+        </div>
+    </div>
+    
+    <script src="budget.js"></script>
+</body>
+</html>
