@@ -2,8 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const commitMessage = "Added responsive design. For mobile support";
+  
   return (
     <div className="App">
+      <div className="commit-message">{commitMessage}</div>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  position: relative;
+}
+
+.commit-message {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #61dafb;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
 }
 
 .App-logo {
