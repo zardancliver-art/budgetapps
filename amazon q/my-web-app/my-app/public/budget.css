@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .commit-message {
     position: fixed;
     top: 10px;
@@ -305,7 +309,7 @@ h2 {
 }
 
 .collapsible-content.expanded {
-    max-height: 200px;
+    max-height: none;
     margin-top: 1rem;
 }
 
