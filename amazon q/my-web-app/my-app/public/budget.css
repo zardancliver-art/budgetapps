@@ -178,6 +178,22 @@ h2 {
     display: none;
 }
 
+.income-preview {
+    padding: 0.75rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #64748b;
+    min-height: 0;
+}
+
+.salary-preview {
+    font-weight: 500;
+    color: #059669;
+}
+
 .income-summary {
     margin-top: 1rem;
     padding: 1rem;
@@ -207,11 +223,12 @@ h2 {
     font-size: 0.8rem;
 }
 
-#people-arrow {
-    font-size: 0.875rem;
+#people-arrow, #income-arrow {
+    font-size: 1.2rem;
+    font-weight: bold;
     transition: transform 0.3s ease;
 }
 
-#people-arrow.rotated {
-    transform: rotate(-90deg);
+#people-arrow.rotated, #income-arrow.rotated {
+    transform: rotate(45deg);
 }

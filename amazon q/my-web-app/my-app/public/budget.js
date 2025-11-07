@@ -35,12 +35,10 @@ function updatePeopleDisplay() {
         `<span class="person-tag">${person}<button class="remove-person" onclick="removePerson('${person}')">×</button></span>`
     ).join('');
     
-    const previewHTML = people.map(person => 
-        `<span class="person-tag">${person}</span>`
-    ).join('');
-    
     container.innerHTML = peopleHTML;
-    preview.innerHTML = previewHTML;
+    
+    // Don't show anything in preview when collapsed
+    preview.innerHTML = '';
 }
 
 function updatePersonSelects() {
@@ -64,12 +62,12 @@ function addItem(type) {
     
     if (type === 'income') {
         itemDiv.innerHTML = `
-            <input type="text" placeholder="Name (e.g., Salary)" id="${itemId}-name">
-            <select class="person-select" id="${itemId}-person">
+            <input type="text" placeholder="Name (e.g., Salary)" id="${itemId}-name" onkeypress="handleIncomeEnter(event, this)">
+            <select class="person-select" id="${itemId}-person" onchange="handleIncomeEnter(event, this)">
                 <option value="">Select person</option>
                 ${people.map(person => `<option value="${person}">${person}</option> `).join('')} 
             </select>
-            <input type="number" placeholder="0" id="${itemId}-value" oninput="calculateTotals()">
+            <input type="number" placeholder="0" id="${itemId}-value" oninput="calculateTotals()" onkeypress="handleIncomeEnter(event, this)">
             <span>SEK</span>
             <button class="remove-btn" onclick="removeItem(this)">Remove</button>
         `;
@@ -78,7 +76,7 @@ function addItem(type) {
             <input type="text" placeholder="Name (e.g., Rent)" id="${itemId}-name">
             <select class="label-select" id="${itemId}-label">
                 <option value="Common">By percentage</option>
-                <option value="Food">Common</option>
+                <option value="splitequally">50/50</option>
                 </select>
             <input type="number" placeholder="0" id="${itemId}-value" oninput="calculateTotals()">
             <span>SEK</span>
@@ -87,6 +85,27 @@ function addItem(type) {
     }
     
     container.appendChild(itemDiv);
+}
+
+function handleIncomeEnter(event, element) {
+    if (event.key === 'Enter') {
+        const item = element.closest('.item');
+        const nameInput = item.querySelector('input[type="text"]');
+        const personSelect = item.querySelector('select');
+        const valueInput = item.querySelector('input[type="number"]');
+        
+        // Check if all fields are filled
+        if (nameInput.value.trim() && personSelect.value && valueInput.value && parseFloat(valueInput.value) > 0) {
+            addItem('income');
+            // Focus on the name input of the new item
+            setTimeout(() => {
+                const newItems = document.querySelectorAll('#income-list .item');
+                const lastItem = newItems[newItems.length - 1];
+                const firstInput = lastItem.querySelector('input[type="text"]');
+                firstInput.focus();
+            }, 50);
+        }
+    }
 }
 
 function removeItem(button) {

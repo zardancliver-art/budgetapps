@@ -12,7 +12,7 @@
         
         <div class="section">
             <h2 class="collapsible" onclick="toggleSection('people')">
-                People <span id="people-arrow">▼</span>
+                Add people <span id="people-arrow">+</span>
             </h2>
             <div id="people-preview" class="people-preview"></div>
             <div id="people-content" class="collapsible-content">
@@ -25,10 +25,14 @@
         </div>
         
         <div class="section">
-            <h2>Income</h2>
-            <div id="income-list"></div>
-            <button class="add-btn" onclick="addItem('income')">+ Add Income</button>
+            <h2 class="collapsible" onclick="toggleSection('income')">
+                Income <span id="income-arrow" class="rotated">+</span>
+            </h2>
             <div id="income-summary" class="income-summary"></div>
+            <div id="income-content" class="collapsible-content expanded">
+                <div id="income-list"></div>
+                <button class="add-btn" onclick="addItem('income')">+ Add Income</button>
+            </div>
         </div>
         
         <div class="section">
